@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { BoardComponent } from './components/board/board.component';
+import { SudokuStore } from './stores/sudoku.store';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,12 @@ import { BoardComponent } from './components/board/board.component';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
+  private readonly store = inject(SudokuStore);
+
   protected readonly title = signal('code-assessment_entain');
+
+  ngOnInit(): void {
+    this.store.initializeBoard('random');
+  }
 }
