@@ -1,1 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Colors */
+  --color-background: #f8fafc;
+  --color-text: #1e293b;
+
+  --color-border: #545d6b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  width: 70vw;
+  min-width: 20em;
+  max-width: 40em;
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 0;
+  aspect-ratio: 1;
+
+  container-type: size;
+}
+.row {
+  --border-solid: 3px solid var(--color-border);
+  --border-dashed: 1px solid var(--color-border);
+
+  display: contents;
+
+  .cell {
+    border: var(--border-dashed);
+    border-top: none;
+    border-left: none;
+
+    &:first-child {
+      border-left: var(--border-solid);
+    }
+
+    &:nth-child(3n) {
+      border-right: var(--border-solid);
+    }
+  }
+
+  &:first-child {
+    .cell {
+      border-top: var(--border-solid);
+    }
+  }
+
+  &:nth-child(3n) {
+    .cell {
+      border-bottom: var(--border-solid);
+    }
+  }
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 6cqw;
+}

@@ -1,0 +1,9 @@
+<div class="board">
+  @for (_ of Array(size); track $index) {
+    <div class="row">
+      @for (_ of Array(size); track $index) {
+        <app-cell />
+      }
+    </div>
+  }
+</div>
