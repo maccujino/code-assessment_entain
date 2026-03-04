@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Ready for a round of Sudoku?</h2>
+<mat-dialog-content>
+  <div class="welcome-dialog-content">
+    <p><strong>Select your challenge level:</strong></p>
+
+    <div class="difficulty-chooser">
+      <button type="button" (click)="onDifficultySelected('easy')">Easy</button>
+      <button type="button" (click)="onDifficultySelected('medium')">Medium</button>
+      <button type="button" (click)="onDifficultySelected('hard')">Hard</button>
+      <button type="button" (click)="onDifficultySelected('random')">Random</button>
+    </div>
+
+    <p>Let's get started and have fun!</p>
+
+    <small>
+      <strong>💡 Pro tip:</strong> You can also use the keys <code>1</code> to <code>9</code> to enter a value or
+      <code>Backspace</code> / <code>Delete</code> to clear the value.
+    </small>
+  </div>
+</mat-dialog-content>
