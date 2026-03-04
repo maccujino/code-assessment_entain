@@ -8,7 +8,7 @@ type BoardResponse = {
 };
 
 type ValidateResponse = {
-  status: 'solved' | 'broken';
+  status: 'unsolved' | 'solved' | 'broken';
 };
 
 type SolveResponse = {

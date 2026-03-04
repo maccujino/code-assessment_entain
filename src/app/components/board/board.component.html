@@ -1,4 +1,4 @@
-<div class="board">
+<div class="board" [class.valid]="validation() === 'valid'" [class.invalid]="validation() === 'invalid'">
   @for (_ of Array(size); track $index; let rowIndex = $index) {
     <div class="row">
       @for (_ of Array(size); track $index; let columnIndex = $index) {
@@ -6,4 +6,8 @@
       }
     </div>
   }
+
+  <div class="loading-overlay" [class.visible]="boardLoading()">
+    <mat-spinner />
+  </div>
 </div>

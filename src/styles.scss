@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
 :root {
   /* Colors */
@@ -8,6 +9,10 @@
   --color-border: #545d6b;
 
   --color-selected: #afd8e6;
+  --color-valid: rgba(120, 255, 120, 0.35);
+  --color-invalid: rgba(255, 120, 120, 0.35);
+  --color-translucent: rgba(255, 255, 255, 0.75);
+  --color-loading: #aaaaaa;
 
   --color-button: #ffffff;
   --color-button-text: var(--color-text);
@@ -15,6 +20,12 @@
   --color-button-disabled: #cecece;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: var(--color-loading),
+    )
+  );
 }
 
 *,
@@ -59,6 +70,17 @@ body {
   aspect-ratio: 1;
 
   container-type: size;
+
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+
+  &.valid {
+    background-color: var(--color-valid);
+  }
+
+  &.invalid {
+    background-color: var(--color-invalid);
+  }
 }
 
 .row {
@@ -104,6 +126,8 @@ body {
 
   font-size: 6cqw;
 
+  cursor: pointer;
+
   &.selected {
     background: var(--color-selected);
   }
@@ -134,6 +158,10 @@ button {
   border-radius: 4px;
   color: var(--color-button-text);
   box-shadow: var(--shadow-sm);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   transition: background-color 0.2s ease;
 
@@ -174,6 +202,32 @@ button {
 
   .clear-button {
     grid-column: span 3;
+  }
+}
+
+*:has(> .loading-overlay) {
+  position: relative;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: var(--color-translucent);
+
+  cursor: wait;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
