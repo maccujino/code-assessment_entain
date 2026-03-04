@@ -25,4 +25,6 @@
 <button type="button" [class.pushed]="selectedDigit() === 9" [disabled]="disabled()" (click)="onDigitSelected(9)">
   9
 </button>
-<button type="button" class="clear-button" [disabled]="disabled()" (click)="onDigitSelected(undefined)">Clear</button>
+<button type="button" class="clear-button" [disabled]="disabled()" (click)="onDigitSelected(undefined)">
+  Clear value
+</button>

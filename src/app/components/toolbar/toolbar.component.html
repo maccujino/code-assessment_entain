@@ -1,15 +1,17 @@
-<button type="button" [disabled]="validateRunning() || boardLoading()" (click)="validate()">
-  Validate
-  <div class="loading-overlay" [class.visible]="validateRunning()">
-    <mat-spinner [diameter]="20" />
-  </div>
-</button>
-
-<button type="button" [disabled]="solveRunning() || boardLoading()" (click)="solve()">
-  Solve
-  <div class="loading-overlay" [class.visible]="solveRunning()">
-    <mat-spinner [diameter]="20" />
-  </div>
-</button>
-
 <app-digit-input />
+
+<div class="action-wrapper">
+  <button type="button" class="main" [disabled]="validateRunning() || boardLoading()" (click)="validate()">
+    Validate
+    <div class="loading-overlay" [class.visible]="validateRunning()">
+      <mat-spinner [diameter]="20" />
+    </div>
+  </button>
+
+  <button type="button" [disabled]="solveRunning() || boardLoading()" (click)="solve()">
+    Auto-Solve
+    <div class="loading-overlay" [class.visible]="solveRunning()">
+      <mat-spinner [diameter]="20" />
+    </div>
+  </button>
+</div>
