@@ -6,7 +6,10 @@ import { SudokuStore } from '../../stores/sudoku.store';
   selector: 'app-digit-input',
   templateUrl: './digit-input.component.html',
   styleUrls: ['./digit-input.component.scss'],
-  host: { class: 'digit-input' },
+  host: {
+    class: 'digit-input',
+    '(window:keydown)': 'onKeyPressed($event)',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigitInputComponent {
@@ -28,5 +31,43 @@ export class DigitInputComponent {
 
     const [selectedRowIndex, selectedColumnIndex] = this.selectedCell() ?? [-1, -1];
     this.store.setValueFor(digit, selectedRowIndex, selectedColumnIndex);
+  }
+
+  onKeyPressed(event: KeyboardEvent): void {
+    switch (event.key) {
+      case '1':
+        this.onDigitSelected(1);
+        return;
+      case '2':
+        this.onDigitSelected(2);
+        return;
+      case '3':
+        this.onDigitSelected(3);
+        return;
+      case '4':
+        this.onDigitSelected(4);
+        return;
+      case '5':
+        this.onDigitSelected(5);
+        return;
+      case '6':
+        this.onDigitSelected(6);
+        return;
+      case '7':
+        this.onDigitSelected(7);
+        return;
+      case '8':
+        this.onDigitSelected(8);
+        return;
+      case '9':
+        this.onDigitSelected(9);
+        return;
+      case 'Backspace':
+      case 'Delete':
+        this.onDigitSelected(undefined);
+        return;
+      default:
+        return;
+    }
   }
 }
