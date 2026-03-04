@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { SudokuValue } from '../../models/sudoku.model';
+import { ValidSudokuValue } from '../../models/sudoku.model';
 import { SudokuStore } from '../../stores/sudoku.store';
 
 @Component({
@@ -16,27 +16,27 @@ export class CellComponent {
   readonly rowIndex = input<number>(-1);
   readonly columnIndex = input<number>(-1);
 
-  readonly value = computed<Omit<SudokuValue, 0> | ''>(() => {
+  readonly value = computed<ValidSudokuValue | undefined>(() => {
     const rowIndex = this.rowIndex();
     const columnIndex = this.columnIndex();
-    if (rowIndex < 0 || columnIndex < 0 || rowIndex >= 9 || columnIndex >= 9) {
-      return '';
-    }
-
-    const board = this.store.board();
-    return board && board[rowIndex] && board[rowIndex][columnIndex] ? board[rowIndex][columnIndex] : '';
+    return this.store.getValueFor(rowIndex, columnIndex);
   });
 
   readonly locked = computed<boolean>(() => {
     const rowIndex = this.rowIndex();
     const columnIndex = this.columnIndex();
-    if (rowIndex < 0 || columnIndex < 0 || rowIndex >= 9 || columnIndex >= 9) {
-      return false;
-    }
-
-    const boardLocks = this.store.boardLocks();
-    return boardLocks && boardLocks[rowIndex] && boardLocks[rowIndex][columnIndex]
-      ? boardLocks[rowIndex][columnIndex]
-      : false;
+    return this.store.getLockFor(rowIndex, columnIndex);
   });
+
+  readonly selected = computed<boolean>(() => {
+    const [selectedRowIndex, selectedColumnIndex] = this.store.selectedCell() ?? [-1, -1];
+    return selectedRowIndex === this.rowIndex() && selectedColumnIndex === this.columnIndex();
+  });
+
+  select(): void {
+    if (this.locked()) {
+      return;
+    }
+    this.store.selectCell(this.rowIndex(), this.columnIndex());
+  }
 }

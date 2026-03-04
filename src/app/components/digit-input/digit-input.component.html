@@ -1,0 +1,28 @@
+<button type="button" [class.pushed]="selectedDigit() === 1" [disabled]="disabled()" (click)="onDigitSelected(1)">
+  1
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 2" [disabled]="disabled()" (click)="onDigitSelected(2)">
+  2
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 3" [disabled]="disabled()" (click)="onDigitSelected(3)">
+  3
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 4" [disabled]="disabled()" (click)="onDigitSelected(4)">
+  4
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 5" [disabled]="disabled()" (click)="onDigitSelected(5)">
+  5
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 6" [disabled]="disabled()" (click)="onDigitSelected(6)">
+  6
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 7" [disabled]="disabled()" (click)="onDigitSelected(7)">
+  7
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 8" [disabled]="disabled()" (click)="onDigitSelected(8)">
+  8
+</button>
+<button type="button" [class.pushed]="selectedDigit() === 9" [disabled]="disabled()" (click)="onDigitSelected(9)">
+  9
+</button>
+<button type="button" class="clear-button" [disabled]="disabled()" (click)="onDigitSelected(undefined)">Clear</button>

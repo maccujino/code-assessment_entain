@@ -7,9 +7,12 @@
 
   --color-border: #545d6b;
 
+  --color-selected: #afd8e6;
+
   --color-button: #ffffff;
   --color-button-text: var(--color-text);
-  --color-button-hover: #eeeeee;
+  --color-button-active: #eeeeee;
+  --color-button-disabled: #cecece;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
@@ -101,16 +104,22 @@ body {
 
   font-size: 6cqw;
 
-  opacity: 0;
-
-  transition: opacity 2s ease;
-
-  &.has-value {
-    opacity: 1;
+  &.selected {
+    background: var(--color-selected);
   }
 
   &.locked {
     cursor: not-allowed;
+  }
+
+  &:not(.selected) span {
+    opacity: 0;
+
+    transition: opacity 2s ease;
+  }
+
+  &.has-value:not(.selected) span {
+    opacity: 1;
   }
 }
 
@@ -128,8 +137,20 @@ button {
 
   transition: background-color 0.2s ease;
 
-  &:hover {
-    background-color: var(--color-button-hover);
+  &:active {
+    background-color: var(--color-button-active);
+  }
+
+  &.pushed {
+    background-color: var(--color-button-active);
+    box-shadow: inset var(--shadow-sm);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: var(--color-button-disabled);
+    color: color-mix(in srgb, var(--color-button-text) 50%, transparent 50%);
   }
 }
 
@@ -143,6 +164,17 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.digit-input {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1em;
+
+  .clear-button {
+    grid-column: span 3;
+  }
 }
 
 @media (max-width: 768px) {

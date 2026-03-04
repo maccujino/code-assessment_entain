@@ -1,3 +1,8 @@
-<div class="cell-content" [class.has-value]="!!value()" [class.locked]="locked()">
-  {{ value() }}
+<div
+  class="cell-content"
+  [class.has-value]="!!value()"
+  [class.selected]="selected()"
+  [class.locked]="locked()"
+  (click)="select()">
+  <span>{{ value() }}</span>
 </div>

@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SudokuStore } from '../../stores/sudoku.store';
+import { DigitInputComponent } from '../digit-input/digit-input.component';
 
 @Component({
   selector: 'app-toolbar',
+  imports: [DigitInputComponent],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   host: { class: 'toolbar' },
