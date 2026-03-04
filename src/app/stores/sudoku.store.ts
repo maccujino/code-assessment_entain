@@ -131,7 +131,12 @@ export const SudokuStore = signalStore(
     const validateBoard = rxMethod<void>(
       pipe(
         tap(() => {
-          patchState(store, { selectedCell: undefined, validateRunning: true, boardLoading: true });
+          patchState(store, {
+            selectedCell: undefined,
+            validation: undefined,
+            validateRunning: true,
+            boardLoading: true,
+          });
         }),
         map(() => store.board()),
         filter((board): board is SudokuBoard => {
@@ -175,7 +180,7 @@ export const SudokuStore = signalStore(
     const solveBoard = rxMethod<void>(
       pipe(
         tap(() => {
-          patchState(store, { selectedCell: undefined, solveRunning: true, boardLoading: true });
+          patchState(store, { selectedCell: undefined, validation: undefined, solveRunning: true, boardLoading: true });
         }),
         map(() => store.board()),
         filter((board): board is SudokuBoard => {
